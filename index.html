@@ -1,0 +1,41 @@
+﻿<!doctype html>
+<html ng-app>
+<head>
+    <script src="library/angular.js"></script>
+    <script src="list.js"></script>
+    <link rel="stylesheet" href="list.css">
+    <link href="library/bootstrap.css" rel="stylesheet" />
+  
+</head>
+<body class="bg">
+    <div style="width:400px; margin:0 auto">
+        <h2 class="h1">Планирование дел</h2>
+        <div class="panel" ng-controller="ListCtrl">
+            <form ng-submit="addItem()">
+                <input class="form-control" type="text" ng-model="todo" size="30" style="background:#fffacd";
+                       placeholder="Добавить в список новое дело" required>
+                <div class="container well">
+                    <input type="date" ng-model="setDate" value="{{ date | date: 'dd-MM-yyyy'}}" style="background:#fffacd; width:100%">
+               </div>
+                <input class="btn btn-primary" type="submit" value="Добавить">
+            </form>
+       
+            <span class="h4">Выполнено дел: {{remain()}} из {{items.length}}</span>
+            <table class="table table-striped">
+
+                <tbody>
+                    <tr ng-repeat="item in items">
+                        <td><input class="checkbox-inline" type="checkbox" ng-model="item.done"></td>
+                        <td><span class="done-{{item.done}}">{{item.text}}</span></td>
+                        <td><span class="date" >{{item.date | date: "dd-MM-yyyy"}}</span></td>
+                        <td><a class='btn btn-danger' href='' ng-click='delete(item)'> Удалить </a></td>
+    
+                    </tr>
+                </tbody>
+            </table>
+    
+        </div>
+
+    </div>
+</body>
+</html>
